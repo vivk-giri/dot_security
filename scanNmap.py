@@ -8,7 +8,7 @@ import nmap
 nm=nmap.PortScanner()
 parser =argparse.ArgumentParser(description=" Provide IP and port") #creating agument parser
 parser.add_argument('-I','--ip',type=str,required=True , help="Provide Ip address to scan")#adding argument
-#parser.add_argument('-P','--port',type=str, required=True,help="please enter port/ort range")
+#parser.add_argument('-P','--port',type=str, required=True,help="Provide port/port range")
 args=parser.parse_args() #parsing argument
 host=args.ip
 #port=args.port
@@ -17,7 +17,6 @@ host=args.ip
 result=nm.scan(host)
 #result=result.json()
 #print(result)
-#ports=nm[host]['tcp'].keys()
 var2=result['scan']
 for i,k in var2.items():
     for j in k:
@@ -37,5 +36,4 @@ for i,k in var2.items():
                 print("{} : {}".format(v.capitalize(),k['tcp'][t][v]))
             #print(t['state'],t['name'],t['product'],t['version'])
             print('------------------------------') 
-        break    
-
+        break
