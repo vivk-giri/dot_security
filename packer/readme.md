@@ -4,4 +4,4 @@ Install Packer on Windows
 •	Copy exe file from unzipped folder
 •	Set the Environment Variable 
 •	Test Version using cmd 
-o	Packer –version 
+  >>	Packer –version  
