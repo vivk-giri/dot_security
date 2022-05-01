@@ -8,9 +8,7 @@ on:
     inputs:
       passInput:
         description: 'Provide your input: gethost'
-        required: true
-        default: 'gethost'
-      
+        
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -27,6 +25,6 @@ jobs:
         run: echo Hello, world!
       
       - name: call getip script
-      - run : python3 recon_learn\gethost_ip.py
+        run: python3 recon_learn\gethost_ip.py
         
 
