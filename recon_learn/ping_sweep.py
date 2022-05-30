@@ -1,3 +1,11 @@
+#############################################################
+## Example how to run this script 
+##python ping_sweep.py
+##Provide the Starting IP Address: 192.168.1.0
+##Enter the Starting IP Addr : 1
+##Enter the Last IP Addr : 15
+##############################################################
+
 import os
 import platform
 import socket,re
