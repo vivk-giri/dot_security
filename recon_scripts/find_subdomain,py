@@ -1,0 +1,78 @@
+#SubDomain Listing
+#Requirement-Sublist3r should be installed. ref-https://github.com/aboul3la/Sublist3r
+import re
+from time import sleep
+import socket,os
+
+esc_counter=0
+domain_list=[]
+not_resolving=[]
+ip_resolved=[]
+open_ip=[]
+
+fyl=open('subdomain.txt','w')
+fyl.close()
+try:
+    os.system("python Sublist3r\sublist3r.py -d example.com >> subdomain.txt")
+except ValueError as e:
+    print(e)
+
+#Read domain list from the file
+fyl=open('subdomain.txt','r')
+f=fyl.readlines()
+for i in f:
+    if i.count('rms.com'):
+        esc_counter +=1 
+        if esc_counter<2:
+            continue
+        else:
+            #print(esc_counter-1,"-",i)
+            domain_value=i.strip('\n')
+            domain_list.append(domain_value)
+
+fmt1='------------------------------------------------\n'
+fyl.close()
+sleep(5)
+def domain_record():
+    c=0
+    print (fmt1,'Domains getting Resolved ..')
+    print(fmt1)
+    for res_domain in domain_list:
+        try:
+            result= socket.gethostbyname(res_domain)
+            if result:
+                c+=1
+                print(f'{c} - IP : {result} is getting resolved for {res_domain} ')
+                ip_resolved.append(result)
+        except:
+            not_resolving.append(res_domain)
+            pass
+    print(fmt1)
+            
+domain_record()
+print('Domain those not getting resolved..')
+print(fmt1)
+c=0
+for not_re in not_resolving:
+    c+=1
+    print(c,'-',not_re)
+print(fmt1)
+def port_check(host):
+   global tc,fc
+   tc=0
+   fc=0
+   s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+   try:
+      s.connect((host, int(22)))
+      s.shutdown(2)
+      print("{} :  Yes".format(host))
+      tc +=1
+      open_ip.append(host)
+      return True
+   except:       
+       print("{} :  No".format(host))
+       fc +=1
+       return False
+for i in ip_resolved:
+    port_check(i)
+print("Total Opened Count {} and closed count {}".format(tc,fc))
