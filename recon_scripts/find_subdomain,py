@@ -9,7 +9,7 @@ domain_list=[]
 not_resolving=[]
 ip_resolved=[]
 open_ip=[]
-
+fmt1='------------------------------------------------\n'
 fyl=open('subdomain.txt','w')
 fyl.close()
 try:
@@ -30,7 +30,6 @@ for i in f:
             domain_value=i.strip('\n')
             domain_list.append(domain_value)
 
-fmt1='------------------------------------------------\n'
 fyl.close()
 sleep(5)
 def domain_record():
@@ -57,6 +56,8 @@ for not_re in not_resolving:
     c+=1
     print(c,'-',not_re)
 print(fmt1)
+
+#Checking SSH exposed for any of IP
 def port_check(host):
    global tc,fc
    tc=0
